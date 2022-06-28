@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Criptic</string>
+    <string name="valor_peso_actual">"1 USD: "</string>
+    <string name="title_activity_login">Iniciar Sesión</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_landing">Landing</string>
+    <string name="first_fragment_label">Registrarse</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="action_log_in">Log In</string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="prompt_user">Nombre de Usuario</string>
+    <string name="prompt_password_2" />
+    <string name="prompt_pass">Contraseña</string>
+    <string name="logOut">Cerrar Sesión</string>
+    <string name="user_email_prompt">Nombre de Usuario o Email</string>
+    <string name="action_login">Iniciar Sesión</string>
+    <string name="action_signin">Registrarse</string>
+    <string name="warning_username">El nombre debe tener entre 4 y 12 caracteres.</string>
+    <string name="warning_email">El formato de Email provisto no es válido</string>
+    <string name="warning_email_2">El formato de Email provisto no es válido.</string>
+    <string name="warning_password">La contraseña debe tener entre 6 y 12 caracteres.</string>
+    <string name="mny_main_pesos_short">ARS</string>
+    <string name="mny_1_usd_main" />
+    <string name="mny_usd_one_main">1 USD: </string>
+    <string name="mny_main_one_peso">1 ARS: </string>
+    <string name="mny_main_usd_short">USD</string>
+    <string name="zero">0</string>
+</resources>
