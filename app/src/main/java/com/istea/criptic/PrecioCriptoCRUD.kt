@@ -4,8 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import java.math.BigInteger
-import java.security.MessageDigest
+import com.istea.criptic.models.Cripto
 
 // CRUD para facilitar el ABM de precios de criptos
 class PrecioCriptoCRUD(context: Context) {

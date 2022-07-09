@@ -24,7 +24,7 @@
     <string name="prompt_password_2" />
     <string name="prompt_pass">Contraseña</string>
     <string name="logOut">Cerrar Sesión</string>
-    <string name="user_email_prompt">Nombre de Usuario o Email</string>
+    <string name="user_email_prompt">Usuario o Email</string>
     <string name="action_login">Iniciar Sesión</string>
     <string name="action_signin">Registrarse</string>
     <string name="warning_username">El nombre debe tener entre 4 y 12 caracteres.</string>

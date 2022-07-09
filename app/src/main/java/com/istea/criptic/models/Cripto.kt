@@ -1,4 +1,4 @@
-package com.istea.criptic
+package com.istea.criptic.models
 
 // Representacion de una cripto con los atributos que usamos
 class Cripto(id:String?, recurso:String?, precioRecurso:Double?) {

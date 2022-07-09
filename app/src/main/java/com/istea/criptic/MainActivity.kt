@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.istea.criptic.databinding.ActivityMainBinding
+import com.istea.criptic.models.Cripto
 import com.istea.criptic.ui.login.LoginActivity
 import org.json.JSONObject
 import kotlin.math.roundToInt
