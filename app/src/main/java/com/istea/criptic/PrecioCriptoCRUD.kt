@@ -74,4 +74,42 @@ class PrecioCriptoCRUD(context: Context) {
         c.close()
         return item!!
     }
+
+    // Obtiene una cripto partiendo de un id especificado
+    fun searchCripto(recurso:String): Cripto {
+        var item: Cripto? = null
+
+        //Abrir DB en modo lectura
+        val db: SQLiteDatabase = helper?.readableDatabase!!
+
+        //Especificar columnas que quiero consultar
+        val columnas = arrayOf(
+            CriptoContract.Companion.Entrada.COLUMNA_ID,
+            CriptoContract.Companion.Entrada.COLUMNA_RECURSO,
+            CriptoContract.Companion.Entrada.COLUMNA_PRECIO_RECURSO
+        )
+
+        //Crear un cursor para recorrer la tabla
+        val c:Cursor = db.query(
+            CriptoContract.Companion.Entrada.NOMBRE_TABLA,
+            columnas,
+            " id = ?",
+            arrayOf(recurso),
+            null,
+            null,
+            null
+        )
+
+        // Se recorre la tabla
+        while (c.moveToNext()) {
+            item = Cripto(c.getString(c.getColumnIndexOrThrow(CriptoContract.Companion.Entrada.COLUMNA_ID)),
+                c.getString(c.getColumnIndexOrThrow(CriptoContract.Companion.Entrada.COLUMNA_RECURSO)),
+                c.getDouble(c.getColumnIndexOrThrow(CriptoContract.Companion.Entrada.COLUMNA_PRECIO_RECURSO))
+            )
+        }
+
+        // Se cierra la conexion y se devuelven los resultados
+        c.close()
+        return item!!
+    }
 }

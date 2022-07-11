@@ -1,4 +1,4 @@
-package com.istea.criptic
+package com.istea.criptic.models
 
 // Representacion de un recurso con los atributos que usamos
 class Recurso(asset_id:String, name:String, type_is_crypto:Int, price_usd:Double) {

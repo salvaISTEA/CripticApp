@@ -37,4 +37,5 @@
     <string name="mny_main_one_peso">1 ARS: </string>
     <string name="mny_main_usd_short">USD</string>
     <string name="zero">0</string>
+    <string name="main_search">Buscar Cripto</string>
 </resources>

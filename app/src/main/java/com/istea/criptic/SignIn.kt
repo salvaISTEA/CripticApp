@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.istea.criptic.databinding.FragmentFirst2Binding
+import com.istea.criptic.models.Usuario
 
 // Fragmento del registro para validar los datos del registro
 class SignInFragment : Fragment() {

@@ -16,8 +16,10 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.istea.criptic.databinding.ActivityMainBinding
 import com.istea.criptic.models.Cripto
+import com.istea.criptic.models.Recurso
 import com.istea.criptic.ui.login.LoginActivity
 import org.json.JSONObject
+import org.w3c.dom.Text
 import kotlin.math.roundToInt
 
 
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     // Constantes Usadas para buscar la informacion externa a APIs
     private val precioDolarUrl = "https://api-dolar-argentina.herokuapp.com/api/dolarblue"
     private var precioCriptosUrl = "https://rest.coinapi.io/v1/assets?apiKey=363EDEFB-069A-45F5-BCD5-519713851C1B"
+    private var iconosCriptosUrl = "https://rest.coinapi.io/v1/assets/icons?apiKey=363EDEFB-069A-45F5-BCD5-519713851C1B"
 
     // Crear el bind para usar las propiedades del activity
     private lateinit var binding: ActivityMainBinding
@@ -55,6 +58,13 @@ class MainActivity : AppCompatActivity() {
         logOut.setOnClickListener {
             loading.visibility = View.VISIBLE
             logOutProcess()
+        }
+
+        // Bind al boton de busqueda con la logica para esta
+        val searchButton = findViewById<Button>(R.id.searchButton)
+        val search = findViewById<TextView>(R.id.search)
+        searchButton.setOnClickListener {
+            buscarCriptos(search.text.toString())
         }
 
         val monedaSwitch = findViewById<Switch>(R.id.switchCurrency)
@@ -177,7 +187,7 @@ class MainActivity : AppCompatActivity() {
                 // Iteramos los recursos, ya que queremos filtrar algunos recursos
                 for (item in recursos) {
                     // Criptos a filtrar
-                    val arr = arrayOf("BTC", "ETH", "XRP", "USDT", "ADA", "DOT", "XLM")
+                    val arr = arrayOf("BTC", "ETH", "XRP", "USDT", "USDC", "BNB", "BUSD", "SOL", "DOGE", "DAI", "TRX", "SHIB", "AVAX", "WBTC", "ADA", "DOT", "XLM")
 
                     // Si es cripto (type == 1) y es uno de los recursos que necesitamos
                     if (item.type_is_crypto == 1 && item.asset_id in arr) {
@@ -199,9 +209,7 @@ class MainActivity : AppCompatActivity() {
 
                 // Despues de obtener los precios, cargamos los criptos
                 cargarCripto()
-            } catch (e:Exception) {
-                Log.d("btnSolicitudOnClick", e.toString())
-            }
+            } catch (e:Exception) {}
         }, Response.ErrorListener {})
 
         // Anadimos la solicitud a la cola de Volley
@@ -210,6 +218,7 @@ class MainActivity : AppCompatActivity() {
 
     // Carga las criptos obtenidas a la vista y los pasa a pesos para mostrarlos
     private fun cargarCripto() {
+        mostrarRegistros()
 
         // Lista de criptos a cargar
         val criptoIds = arrayOf("BTC", "ETH", "XRP", "USDT", "ADA", "DOT", "XLM")
@@ -237,10 +246,125 @@ class MainActivity : AppCompatActivity() {
             }
 
             // Calculo del precio y aproximado
-            val precioRecursoPesos = entradaCripto.precioRecurso!! * this.precioDolar
+            var precioRecursoPesos = entradaCripto.precioRecurso!!
+            if (this.esPesos) {
+                precioRecursoPesos *= this.precioDolar
+            }
             val aproximado = (precioRecursoPesos * 100.0).roundToInt() / 100.0
             criptoTextViews[i].text = aproximado.toString()
         }
     }
 
+    private fun limpiarRegistros() {
+        val criptoTextViews = arrayOf(
+            findViewById<TextView>(R.id.valorBTC),
+            findViewById<TextView>(R.id.valorETH),
+            findViewById<TextView>(R.id.valorXRP),
+            findViewById<TextView>(R.id.valorUSDT),
+            findViewById<TextView>(R.id.valorADA),
+            findViewById<TextView>(R.id.valorDOT),
+            findViewById<TextView>(R.id.valorXLM)
+        )
+
+        val criptoNames = arrayOf(
+            findViewById<TextView>(R.id.textView),
+            findViewById<TextView>(R.id.textView3),
+            findViewById<TextView>(R.id.textView4),
+            findViewById<TextView>(R.id.textView5),
+            findViewById<TextView>(R.id.textView7),
+            findViewById<TextView>(R.id.textView8),
+            findViewById<TextView>(R.id.textView9)
+        )
+
+        val criptoCurrency = arrayOf(
+            findViewById<TextView>(R.id.arsText1),
+            findViewById<TextView>(R.id.arsText2),
+            findViewById<TextView>(R.id.arsText3),
+            findViewById<TextView>(R.id.arsText4),
+            findViewById<TextView>(R.id.arsText5),
+            findViewById<TextView>(R.id.arsText6),
+            findViewById<TextView>(R.id.arsText7)
+        )
+
+        for (i in criptoTextViews.indices) {
+            criptoTextViews[i].visibility = View.GONE
+            criptoCurrency[i].visibility = View.GONE
+            criptoNames[i].visibility = View.GONE
+        }
+    }
+
+    // Mostrar los registros indiferentemente si fueron ocultados
+    private fun mostrarRegistros() {
+        val criptoTextViews = arrayOf(
+            findViewById<TextView>(R.id.valorBTC),
+            findViewById<TextView>(R.id.valorETH),
+            findViewById<TextView>(R.id.valorXRP),
+            findViewById<TextView>(R.id.valorUSDT),
+            findViewById<TextView>(R.id.valorADA),
+            findViewById<TextView>(R.id.valorDOT),
+            findViewById<TextView>(R.id.valorXLM)
+        )
+
+        val criptoNames = arrayOf(
+            findViewById<TextView>(R.id.textView),
+            findViewById<TextView>(R.id.textView3),
+            findViewById<TextView>(R.id.textView4),
+            findViewById<TextView>(R.id.textView5),
+            findViewById<TextView>(R.id.textView7),
+            findViewById<TextView>(R.id.textView8),
+            findViewById<TextView>(R.id.textView9)
+        )
+        criptoNames[0].text = "BTC"
+
+        val criptoCurrency = arrayOf(
+            findViewById<TextView>(R.id.arsText1),
+            findViewById<TextView>(R.id.arsText2),
+            findViewById<TextView>(R.id.arsText3),
+            findViewById<TextView>(R.id.arsText4),
+            findViewById<TextView>(R.id.arsText5),
+            findViewById<TextView>(R.id.arsText6),
+            findViewById<TextView>(R.id.arsText7)
+        )
+
+        for (i in criptoTextViews.indices) {
+            criptoTextViews[i].visibility = View.VISIBLE
+            criptoCurrency[i].visibility = View.VISIBLE
+            criptoNames[i].visibility = View.VISIBLE
+        }
+
+        val imageView = findViewById<View>(R.id.imageView)
+        imageView.visibility = View.VISIBLE
+    }
+
+    private fun cargarUnCripto(cripto: Cripto) {
+        val precioRecursoPesos = cripto.precioRecurso!! * this.precioDolar
+        val aproximado = (precioRecursoPesos * 100.0).roundToInt() / 100.0
+        val viewValor = findViewById<TextView>(R.id.valorBTC)
+        viewValor.text = aproximado.toString()
+        viewValor.visibility = View.VISIBLE
+        val viewTexto = findViewById<TextView>(R.id.textView)
+        viewTexto.text = cripto.id
+        viewTexto.visibility = View.VISIBLE
+        val imageView = findViewById<View>(R.id.imageView)
+        imageView.visibility = View.INVISIBLE
+        val moneda = findViewById<TextView>(R.id.arsText1)
+        if (this.esPesos) {
+            moneda.text = "ARS"
+            moneda.visibility = View.VISIBLE
+        } else {
+            moneda.text = "USD"
+            moneda.visibility = View.VISIBLE
+        }
+    }
+
+    private fun buscarCriptos(termino: String) {
+        limpiarRegistros()
+        try {
+            val registro = PrecioCriptoCRUD(this).searchCripto(termino)
+            cargarUnCripto(registro)
+        } catch (e: Exception) {
+            cargarCripto()
+            return
+        }
+    }
 }

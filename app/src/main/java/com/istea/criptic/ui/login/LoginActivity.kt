@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.istea.criptic.*
 import com.istea.criptic.databinding.ActivityLoginBinding
+import com.istea.criptic.models.Usuario
 import java.math.BigInteger
 import java.security.MessageDigest
 

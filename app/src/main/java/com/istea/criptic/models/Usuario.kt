@@ -1,4 +1,4 @@
-package com.istea.criptic
+package com.istea.criptic.models
 
 // Representacion de un usuario con los atributos que usamos
 class Usuario(nombreUsuario: String, email: String, password: String) {

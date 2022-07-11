@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.istea.criptic.models.Usuario
 import java.math.BigInteger
 import java.security.MessageDigest
 
