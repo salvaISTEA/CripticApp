@@ -1,5 +1,6 @@
 package com.istea.criptic
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
@@ -360,9 +362,14 @@ class MainActivity : AppCompatActivity() {
     private fun buscarCriptos(termino: String) {
         limpiarRegistros()
         try {
-            val registro = PrecioCriptoCRUD(this).searchCripto(termino)
+            val registro = PrecioCriptoCRUD(this).searchCripto(termino.uppercase())
             cargarUnCripto(registro)
         } catch (e: Exception) {
+            Toast.makeText(
+                this,
+                "La busqueda no produjo resultados",
+                Toast.LENGTH_LONG
+            ).show()
             cargarCripto()
             return
         }

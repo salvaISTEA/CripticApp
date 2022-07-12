@@ -70,7 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/signInPassword"
@@ -85,7 +86,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warningEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/warningEmail"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/signInEmail"
@@ -102,7 +104,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warningUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/warningUsername"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/button_first"
