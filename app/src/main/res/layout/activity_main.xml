@@ -515,12 +515,12 @@
         android:id="@+id/search"
         android:layout_width="180dp"
         android:layout_height="45dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="@string/main_search"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:hint="@string/main_search"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -530,7 +530,7 @@
     <FrameLayout
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="186dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
